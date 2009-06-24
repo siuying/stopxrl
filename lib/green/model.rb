@@ -6,5 +6,5 @@ class Tweet
   property  :created_at,        DateTime
   property  :profile_image_url, String, :length => 256
   property  :text,              String, :length => 140
-  property  :twitter_id,        Integer
+  property  :twitter_id,        BigDecimal
 end

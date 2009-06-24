@@ -1,3 +1,2 @@
 sinatra
 json
-httparty --version '= 0.4.3'

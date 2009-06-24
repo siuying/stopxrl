@@ -1,7 +1,8 @@
 require 'sinatra/base'
 $KCODE = 'UTF8'
 require 'logger'
-require 'httparty'
+require 'open-uri'
+
 module Sinatra
   module Green
     module Controller
@@ -34,7 +35,9 @@ module Sinatra
           last_tweet = Tweet.first(:order => [:twitter_id.desc]).twitter_id rescue 0
           last_tweet ||= 0
           
-          res = JSON.parse(HTTParty.get('http://search.twitter.com/search.json', :query => {:q => term, :rpp => 20, :last_tweet => last_tweet}, :format => :json).body)
+          rpp = 20
+          
+          res = JSON.parse(open("http://search.twitter.com/search.json?q=#{Rack::Utils.escape term}&rpp=#{rpp}&since_id=#{last_tweet}").read)
           results = res['results']
           results.each do |t|
             @log.info("tweet: #{t.inspect}")

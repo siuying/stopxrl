@@ -40,8 +40,9 @@ module Sinatra
           rpp = 20
           
           query = { 'q' => term, 'rpp' => rpp, 'since_id' => last_tweet }
-
-          res = JSON.parse(@client.get_content("http://search.twitter.com/search.json", query))
+          header = {'User-Agent' => 'greendam.heroku.com'}
+          
+          res = JSON.parse(@client.get_content("http://search.twitter.com/search.json", query, header))
           results = res['results']
           results.each do |t|
             @log.info("tweet: #{t.inspect}")

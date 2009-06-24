@@ -1,5 +1,6 @@
 require 'sinatra/base'
 $KCODE = 'UTF8'
+require 'logger'
 
 module Sinatra
   module Green

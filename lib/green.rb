@@ -7,7 +7,5 @@ require 'data_objects'
 gem 'do_postgres', '>= 0.9.11'
 require 'do_postgres'
 require 'datamapper'
-
-require 'search'
 require 'green/model'
 require 'green/controller'

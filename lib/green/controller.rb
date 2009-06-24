@@ -1,7 +1,7 @@
 require 'sinatra/base'
 $KCODE = 'UTF8'
 require 'logger'
-
+require 'httparty'
 module Sinatra
   module Green
     module Controller
@@ -33,9 +33,10 @@ module Sinatra
         def tweet(term)
           last_tweet = Tweet.first(:order => [:twitter_id.desc]).twitter_id rescue 0
           last_tweet ||= 0
-          search = Twitter::Search.new(term)
-          search = search.since(last_tweet) if last_tweet > 0
-          search.each do |t|
+          
+          res = JSON.parse(HTTParty.get('http://search.twitter.com/search.json', :query => {:q => term, :rpp => 20, :last_tweet => last_tweet}, :format => :json).body)
+          results = res['results']
+          results.each do |t|
             @log.info("tweet: #{t.inspect}")
             tweet = Tweet.first(:twitter_id => t['id'])
             if tweet.nil?

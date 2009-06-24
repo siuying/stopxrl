@@ -1,7 +1,7 @@
 require 'sinatra/base'
 $KCODE = 'UTF8'
 require 'logger'
-require 'open-uri'
+require 'httpclient'
 
 module Sinatra
   module Green
@@ -11,6 +11,7 @@ module Sinatra
 
         app.before do
           @log = Logger.new($stdout)
+          @client = HTTPClient.new
           begin
             options.search_terms.each do |term|
               tweet(term)
@@ -37,7 +38,7 @@ module Sinatra
           
           rpp = 20
           
-          res = JSON.parse(open("http://search.twitter.com/search.json?q=#{Rack::Utils.escape term}&rpp=#{rpp}&since_id=#{last_tweet}").read)
+          res = JSON.parse(@client.get_content("http://search.twitter.com/search.json?q=#{Rack::Utils.escape term}&rpp=#{rpp}&since_id=#{last_tweet}"))
           results = res['results']
           results.each do |t|
             @log.info("tweet: #{t.inspect}")

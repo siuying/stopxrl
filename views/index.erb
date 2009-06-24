@@ -1,0 +1,9 @@
+<ul>
+	<% for item in @items do %>
+	<li>
+		<span class="name"><%= h item.from_user %></span>
+		<span class="message"><%= h item.text %></span>
+		<span class="time"><%= h item.created_at %></span>
+	</li>
+	<% end %>
+</ul>

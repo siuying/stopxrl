@@ -13,9 +13,7 @@ module Sinatra
           @log = Logger.new($stdout)
           @client = HTTPClient.new
           begin
-            options.search_terms.each do |term|
-              tweet(term)
-            end
+            tweet(options.search_terms.join(' OR '))
           rescue StandardError => e
             @log.error "error loading tweet: #{e}"
           end
@@ -38,7 +36,9 @@ module Sinatra
           
           rpp = 20
           
-          res = JSON.parse(@client.get_content("http://search.twitter.com/search.json?q=#{Rack::Utils.escape term}&rpp=#{rpp}&since_id=#{last_tweet}"))
+          query = { 'q' => term, 'rpp' => rpp, 'since_id' => last_tweet }
+
+          res = JSON.parse(@client.get_content("http://search.twitter.com/search.json", query))
           results = res['results']
           results.each do |t|
             @log.info("tweet: #{t.inspect}")

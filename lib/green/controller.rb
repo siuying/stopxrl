@@ -31,12 +31,12 @@ module Sinatra
     
       module Helpers
         def tweet(term)
-          last_tweet = Tweet.first(:order => [:twitter_id.desc]).twitter_id rescue 0
-          last_tweet ||= 0
+          last_tweet = Tweet.first(:order => [:twitter_id.desc]).twitter_id rescue 0 ||= 0
           search = Twitter::Search.new(term)
           search = search.since(last_tweet) if last_tweet > 0
 
-          search.each do |t|              
+          search.fetch. do |t|              
+            puts "tweet: #{t.inspect}"
             tweet = Tweet.first(:twitter_id => t['id'])
             if tweet.nil?
               Tweet.new(:from_user => t['from_user'], 

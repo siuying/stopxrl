@@ -11,7 +11,10 @@ module Sinatra
 
         app.before do
           @log = Logger.new($stdout)
+          
           @client = HTTPClient.new
+          @client.debug_dev= $stdout
+          
           begin
             tweet(options.search_terms.join(' OR '))
           rescue StandardError => e

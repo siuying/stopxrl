@@ -3,12 +3,10 @@
 		<img src="<%= message.profile_image_url %>"/>
 	</div>
 	<div class="textbox">
-		<span class="name"><a href="http://twitter.com/<%= message.from_user %>">@<%= message.from_user %></a></span>
 		<span class="text"><%= prep message.text %></span>
 	</div>
 	<div class="subbox">
-		<span class="time"><a href="http://twitter.com/<%= message.from_user %>/status/<%= message.twitter_id.to_i %>">
-		<%= h message.created_at.strftime("%Y/%m/%d %H:%M:%S") %></a>
+		<span class="name"><a href="http://twitter.com/<%= message.from_user %>"><%= message.from_user %></a></span> <span class="time"><a href="http://twitter.com/<%= message.from_user %>/status/<%= message.twitter_id.to_i %>">#</a>
 		</span>
 	</div>
 </div>

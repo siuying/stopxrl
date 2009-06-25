@@ -48,13 +48,6 @@ margin: 0;
 padding: 2px;
 }
 
-div.imagebox {
-margin-right: 10px;
-margin-bottom: 10px;
-float: left;
-border: 1px solid #1B2400;
-}
-
 div.textbox {
 margin: 5px;
 width: 600;
@@ -79,3 +72,10 @@ border: 3px solid #F9CB00;
 -moz-border-radius: 20px;
 }
 
+
+div.imagebox {
+margin-right: 10px;
+margin-bottom: 10px;
+float: left;
+border: 1px solid #1B2400;
+}

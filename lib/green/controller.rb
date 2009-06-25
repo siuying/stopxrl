@@ -85,9 +85,9 @@ module Sinatra
         # link hashtag
         # link user
         def prep(text)
-          text = text.gsub /(http[s]?:\/\/[^ \t]+)[ \t]?/, "<a href=\"\\1\">\\1</a> "
-          text = text.gsub /#([^ \t]+)[ \t]?/, "<a href=\"http://search.twitter.com/search?tag=\\1\">#\\1</a> "
-          text = text.gsub /@([^ \t]+)[ \t]?/, "<a href=\"http://twitter.com/\\1\">@\\1</a> "
+          text = text.gsub /(http[s]?:\/\/[^ \t]+)[ \t]?/, "<a target=\"_BLANK\" href=\"\\1\">\\1</a> "
+          text = text.gsub /#([^ \t]+)[ \t]?/, "<a target=\"_BLANK\" href=\"http://search.twitter.com/search?tag=\\1\">#\\1</a> "
+          text = text.gsub /@([^ \t]+)[ \t]?/, "<a target=\"_BLANK\" href=\"http://twitter.com/\\1\">@\\1</a> "
         end 
       end
     end

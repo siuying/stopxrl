@@ -1,12 +1,12 @@
 <div class="message rounded" id="m_<%= message.id %>">
 	<div class="imagebox">
-		<img src="<%= message.profile_image_url %>"/>
+		<a href="http://twitter.com/<%= message.from_user %>" target="_BLANK"><img src="<%= message.profile_image_url %>"/></a>
 	</div>
 	<div class="textbox">
 		<span class="text"><%= prep message.text %></span>
 	</div>
 	<div class="subbox">
-		<span class="name"><a href="http://twitter.com/<%= message.from_user %>"><%= message.from_user %></a></span> <span class="time"><a href="http://twitter.com/<%= message.from_user %>/status/<%= message.twitter_id.to_i %>">#</a>
+		<span class="name"><a href="http://twitter.com/<%= message.from_user %>" target="_BLANK"><%= message.from_user %></a></span> <span class="time"><a href="http://twitter.com/<%= message.from_user %>/status/<%= message.twitter_id.to_i %>" target="_BLANK">#</a>
 		</span>
 	</div>
 </div>

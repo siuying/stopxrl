@@ -13,8 +13,6 @@ module Sinatra
           @log = Logger.new($stdout)
           
           @client = HTTPClient.new
-          @client.debug_dev= $stdout
-          
           begin
             tweet(options.search_terms.join(' OR '))
           rescue StandardError => e
@@ -34,18 +32,17 @@ module Sinatra
     
       module Helpers
         def tweet(term)
-          last_tweet = Tweet.first(:order => [:twitter_id.desc]).twitter_id rescue 0
+          last_tweet =  Tweet.first(:order => [:twitter_id.desc]).twitter_id rescue 0
           last_tweet ||= 0
           
-          rpp = 20
-          
+          rpp = 100
           query = { 'q' => term, 'rpp' => rpp, 'since_id' => last_tweet }
           header = {'User-Agent' => 'greendam.heroku.com'}
           
           res = JSON.parse(@client.get_content("http://search.twitter.com/search.json", query, header))
           results = res['results']
           results.each do |t|
-            @log.info("tweet: #{t.inspect}")
+            #@log.info("tweet: #{t.inspect}")
             tweet = Tweet.first(:twitter_id => t['id'])
             if tweet.nil?
               Tweet.new(:from_user => t['from_user'], 

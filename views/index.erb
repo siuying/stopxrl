@@ -6,7 +6,7 @@
 		</div>
 		<div class="textbox">
 			<span class="name"><a href="http://twitter.com/<%= item.from_user %>">@<%= item.from_user %></a></span>
-			<span class="text"><%= item.text %></span>
+			<span class="text"><%= prep item.text %></span>
 		</div>
 		<div class="subbox">
 			<span class="time"><a href="http://twitter.com/<%= item.from_user %>/status/<%= item.twitter_id.to_i %>">

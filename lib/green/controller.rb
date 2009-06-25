@@ -58,6 +58,15 @@ module Sinatra
         def h(text)
           Rack::Utils.escape_html(text) 
         end
+        # prepare text for html output
+        # add a tag to link
+        # link hashtag
+        # link user
+        def prep(text)
+          text = text.gsub /(http[s]?:\/\/[^ \t]+)[ \t]?/, "<a href=\"\\1\">\\1</a> "
+          text = text.gsub /#([^ \t]+)[ \t]?/, "<a href=\"http://search.twitter.com/search?tag=\\1\">#\\1</a> "
+          text = text.gsub /@([^ \t]+)[ \t]?/, "<a href=\"http://twitter.com/\\1\">@\\1</a> "
+        end 
       end
     end
 

@@ -3,6 +3,7 @@ $KCODE = 'UTF8'
 require 'logger'
 require 'httpclient'
 
+
 module Sinatra
   module Green
     module Controller
@@ -55,10 +56,31 @@ module Sinatra
             tweet
           end
         end
+
+        #Escape HTML
         def h(text)
           Rack::Utils.escape_html(text) 
         end
-        # prepare text for html output
+        
+        #Rails style Partial
+        def partial(template, *args)
+          options = args.last.is_a?(Hash) ? args.last : {}
+          
+          options.merge!(:layout => false)
+          if collection = options.delete(:collection) then
+            collection.inject([]) do |buffer, member|
+              buffer << erb(template, options.merge(
+                                        :layout => false, 
+                                        :locals => {template.to_sym => member}
+                                      )
+                           )
+            end.join("\n")
+          else
+            erb template, options
+          end
+        end
+
+        #prepare text for html output
         # add a tag to link
         # link hashtag
         # link user

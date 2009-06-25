@@ -1,15 +1,45 @@
-body { font-family: Verdana, sans-serif; font-size: 12px; color:#484848; margin: 0; padding: 0; min-width: 900px; }
+/** START STANDARD HTML **/
+
+body { 
+  font-family: Verdana, sans-serif; 
+  font-size: 12px; 
+	margin:50px 0px; 
+	padding:0px;
+	background-color: #1B2400;
+	text-align:center;
+}
 
 h1, h2, h3, h4 { font-family: "Trebuchet MS", Verdana, sans-serif;}
+
+a:link, a:visited {
+text-decoration: none;
+color: #214900;
+}
+
+a:hover {
+text-decoration: underline;
+}
+
+/** END STANDARD HTML **/
+
+#content {
+	width: 65%;
+	margin:0px auto;
+	text-align:left;
+	padding:15px;
+}
 
 #message {
 font-size: 16px;
 color: #4e4;
 }
 
-div.message {
+div.message {  
+text-align: left;
+background-color: #D6DD5D;
+color: #5D8000;
 padding: 10px;
-margin: 20px 40px;
+margin: 20px 60px;
 width: 600;
 }
 
@@ -20,6 +50,7 @@ padding: 2px;
 
 div.imagebox {
 margin-right: 10px;
+margin-bottom: 10px;
 float: left;
 border: 1px solid #000;
 }
@@ -28,14 +59,25 @@ div.textbox {
 margin: 5px;
 width: 600;
 font-size: 20px;
+margin: 0px 20px 20px 20px;
 }
 
 div.subbox {
 font-size: 9px;
 font-color: #aaa;
-float: right
+padding: 0 5px 5px 0px;
+text-align: right;
 }
 
-#message .name {
+.name {
 font-weight: bold;
 }
+
+.rounded {
+border: 3px solid #F9CB00;
+
+/* Do rounding (native in Firefox and Safari) */
+-webkit-border-radius: 20px;
+-moz-border-radius: 20px;
+}
+

@@ -46,6 +46,7 @@ width: 600;
 div.imagebox img{
 margin: 0;
 padding: 2px;
+border: 1px solid #1B2400;
 }
 
 div.textbox {

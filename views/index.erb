@@ -1,9 +1,18 @@
-<ul>
+<div id="messages">
 	<% for item in @items do %>
-	<li>
-		<span class="name"><%= h item.from_user %></span>
-		<span class="message"><%= h item.text %></span>
-		<span class="time"><%= h item.created_at %></span>
-	</li>
+	<div class="message" id="m_<%= item.id %>">
+		<div class="imagebox">
+			<img src="<%= item.profile_image_url %>"/>
+		</div>
+		<div class="textbox">
+			<span class="name"><%= item.from_user %></span>
+			<span class="text"><%= item.text %></span>
+		</div>
+		<div class="subbox">
+			<span class="time"><a href="http://twitter.com/<%= item.from_user %>/status/<%= item.twitter_id.to_i %>">
+			<%= h item.created_at.strftime("%Y/%M/%d %H:%m:%S") %></a>
+			</span>
+		</div>
+	</div>
 	<% end %>
-</ul>
+</div>

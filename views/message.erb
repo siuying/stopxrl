@@ -1,4 +1,4 @@
-<div class="message" id="m_<%= message.id %>">
+<div class="message rounded" id="m_<%= message.id %>">
 	<div class="imagebox">
 		<img src="<%= message.profile_image_url %>"/>
 	</div>
@@ -8,7 +8,7 @@
 	</div>
 	<div class="subbox">
 		<span class="time"><a href="http://twitter.com/<%= message.from_user %>/status/<%= message.twitter_id.to_i %>">
-		<%= h message.created_at.strftime("%Y/%M/%d %H:%m:%S") %></a>
+		<%= h message.created_at.strftime("%Y/%m/%d %H:%M:%S") %></a>
 		</span>
 	</div>
 </div>

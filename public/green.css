@@ -105,3 +105,17 @@ margin-right: 10px;
 margin-bottom: 10px;
 float: left;
 }
+
+div.nav {
+font-size: 18px;
+text-align: center;
+color: white;
+}
+
+div.nav a:link, div.nav a:visited, div.nav a:hover {
+color: #F9CB00;
+}
+
+div.nav #nomore {
+display: none;
+}

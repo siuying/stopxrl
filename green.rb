@@ -14,5 +14,5 @@ class Green < Sinatra::Default
   set :public, 'public'
   set :environment, :production
   set :search_terms, ["綠壩", "绿坝", "greendam"]
-
+  set :items_per_page, 25
 end

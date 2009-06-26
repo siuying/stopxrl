@@ -1,0 +1,6 @@
+<div class="appended" style="margin:0; padding: 0; display: none">
+<%= partial :message, { :collection => @items } %>
+</div>
+<script type="text/javascript">
+Tweet.hasMore = <%= @has_more %>;
+</script>

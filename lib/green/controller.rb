@@ -22,8 +22,20 @@ module Sinatra
         end
 
         app.get '/' do
-          @items = Tweet.all(:order => [:twitter_id.desc], :limit => 50)
+          @items = Tweet.all(:order => [:twitter_id.desc], :limit => options.items_per_page)
+          @has_more = Tweet.count(:twitter_id.lt => @items.to_a.last.twitter_id) > 0
+          @last_tweet_id = @items.to_a.last.twitter_id.to_i
           erb :index
+        end
+        
+        app.get '/before/:before' do
+          before = params[:before].to_i
+          @items = Tweet.all(:twitter_id.lt => before, :order => [:twitter_id.desc], :limit => options.items_per_page)
+          halt if @items.size == 0
+
+          @last_tweet_id = @items.to_a.last.twitter_id
+          @has_more = Tweet.count(:twitter_id.lt => @last_tweet_id) > 0
+          erb :before, :layout => false
         end
 
         app.error do

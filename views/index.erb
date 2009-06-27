@@ -3,7 +3,7 @@
 </div>
 
 <div class="nav">
-<a href="#" id="more">more</a>
+<a href="#" id="more">more</a> <img id="loading" src="ajax-loader.gif" style="display: none" />
 <p id="nomore">no more #greendam now, <a href="http://twitter.com/">tweet one?</a></p>
 </div>
 
@@ -14,10 +14,12 @@ Tweet.hasMore = <%= @has_more %> ;
 Tweet.lastTweetId = <%= @last_tweet_id %>;
 
 $("#more").bind("click", function(){
+	$("#loading").show();
 	$.ajax({
 	  type: "GET",
 	  url: "/before/" + Tweet.lastTweetId,
 	  success: function(html){
+		$("#loading").hide();
 	    $("#messages").append(html);
 		$(".appended").slideDown(2000);
 

@@ -20,14 +20,8 @@ $("#more").bind("click", function(){
 	  url: "/before/" + Tweet.lastTweetId,
 	  success: function(html){
 		$("#loading").hide();
-	    $("#messages").append(html);
+                $("#messages").append(html);
 		$(".appended").slideDown(2000);
-
-		var m = $(".message .time a");
-		if (m.size() > 0) {
-			var link = $(m[m.length-1]).attr("href");
-			Tweet.lastTweetId = link.substring(link.lastIndexOf("/")+1);
-		}
 		if(!Tweet.hasMore) {
 			$("#more").hide();
 			$("#nomore").show();

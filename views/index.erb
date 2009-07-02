@@ -20,7 +20,7 @@ $("#more").bind("click", function(){
 	  url: "/before/" + Tweet.lastTweetId,
 	  success: function(html){
 		$("#loading").hide();
-                $("#messages").append(html);
+		$("#messages").append(html);
 		$(".appended").slideDown(2000);
 		if(!Tweet.hasMore) {
 			$("#more").hide();

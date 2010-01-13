@@ -88,7 +88,7 @@ module Sinatra
 
         def open(url, term, last_tweet)
           query = { :q => term, :rpp => "100", :since_id => last_tweet }
-          response = Typhoeus::Request.post(url, :timeout => 15000, :cache_timeout => 60,  :params => query)
+          response = Typhoeus::Request.post(url, :timeout => 15000, :cache_timeout => 20,  :params => query)
           response.body
         end
         

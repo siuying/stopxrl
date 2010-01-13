@@ -1,8 +1,7 @@
 require 'sinatra/base'
 $KCODE = 'UTF8'
 require 'logger'
-require 'httpclient'
-
+require 'typhoeus'
 
 module Sinatra
   module Green
@@ -13,7 +12,6 @@ module Sinatra
         app.before do
           @log = Logger.new($stdout)
           
-          @client = HTTPClient.new
           begin
             tweet(options.search_terms.join(' OR '))
           rescue StandardError => e
@@ -48,11 +46,7 @@ module Sinatra
           last_tweet =  Tweet.first(:order => [:twitter_id.desc]).twitter_id rescue 0
           last_tweet ||= 0
           
-          rpp = 100
-          query = { 'q' => term, 'rpp' => rpp, 'since_id' => last_tweet }
-          header = {'User-Agent' => 'stopxrl.heroku.com'}
-          
-          res = JSON.parse(@client.get_content("http://search.twitter.com/search.json", query, header))
+          res = JSON.parse(open("http://search.twitter.com/search.json", term, last_tweet))
           results = res['results']
           results.each do |t|
             #@log.info("tweet: #{t.inspect}")
@@ -92,6 +86,12 @@ module Sinatra
           end
         end
 
+        def open(url, term, last_tweet)
+          query = { :q => term, :rpp => "100", :since_id => last_tweet }
+          response = Typhoeus::Request.post(url, :timeout => 15000, :cache_timeout => 60,  :params => query)
+          response.body
+        end
+        
         #prepare text for html output
         # add a tag to link
         # link hashtag

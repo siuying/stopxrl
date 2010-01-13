@@ -1,6 +1,6 @@
 <div class="message rounded" id="m_<%= message.id %>">
 	<div class="imagebox">
-		<a href="http://twitter.com/<%= message.from_user %>" target="_BLANK"><img src="<%= message.profile_image_url %>"/></a>
+		<a href="http://twitter.com/<%= message.from_user %>" target="_BLANK"><img src="<%= message.profile_image_url %>" width="48" height="48"/></a>
 	</div>
 	<div class="textbox">
 		<span class="text"><%= prep message.text %></span>

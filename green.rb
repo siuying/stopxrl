@@ -13,6 +13,6 @@ class Green < Sinatra::Default
   set :views,  'views'
   set :public, 'public'
   set :environment, :production
-  set :search_terms, ["綠壩", "绿坝", "greendam"]
+  set :search_terms, ["stopxrl", "高鐵"]
   set :items_per_page, 25
 end

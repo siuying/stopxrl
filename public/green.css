@@ -4,8 +4,6 @@ body {
 	margin:50px 0px; 
 	padding:0px;
 	height:100%;
-	background: url(background.jpg) repeat-x scroll left top #1B2400;
-  background-attachment:fixed;
 	text-align:center;
 }
 

@@ -50,7 +50,7 @@ module Sinatra
           
           rpp = 100
           query = { 'q' => term, 'rpp' => rpp, 'since_id' => last_tweet }
-          header = {'User-Agent' => 'greendam.heroku.com'}
+          header = {'User-Agent' => 'stopxrl.heroku.com'}
           
           res = JSON.parse(@client.get_content("http://search.twitter.com/search.json", query, header))
           results = res['results']
